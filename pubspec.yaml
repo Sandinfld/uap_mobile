@@ -7,13 +7,12 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  flame: ^1.10.1
-  firebase_auth: ^3.3.5
+  flame: ^1.13.1
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  flame_lint: ^1.1.1
+  flame_lint: ^1.1.2
   flutter_test:
     sdk: flutter
 

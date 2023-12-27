@@ -6,7 +6,7 @@ class MainMenu extends StatelessWidget {
   // Reference to parent game.
   final EmberQuestGame game;
 
-  const MainMenu({required this.game, super.key});
+  const MainMenu({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,11 @@ class MainMenu extends StatelessWidget {
       child: Center(
         child: Container(
           padding: const EdgeInsets.all(10.0),
-          height: 270,
+          height: 250,
           width: 300,
           decoration: const BoxDecoration(
             color: blackTextColor,
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
           ),
@@ -42,14 +42,7 @@ class MainMenu extends StatelessWidget {
                 height: 75,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Cek apakah pengguna sudah login atau belum
-                    if (game.isLoggedIn) {
-                      // Jika sudah login, mulai permainan
-                      game.overlays.remove('MainMenu');
-                    } else {
-                      // Jika belum login, tampilkan layar login
-                      _showLoginScreen(context);
-                    }
+                    game.overlays.remove('MainMenu');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: whiteTextColor,
@@ -64,49 +57,10 @@ class MainMenu extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text(
-                '''Use WASD or Arrow Keys for movement.
-Space bar to jump.
-Collect as many stars as you can and avoid enemies!''',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: whiteTextColor,
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Tambahkan tombol login
-              SizedBox(
-                width: 200,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Tampilkan layar login ketika tombol login ditekan
-                    _showLoginScreen(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: whiteTextColor,
-                  ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: blackTextColor,
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  // Metode untuk menampilkan layar login
-  void _showLoginScreen(BuildContext context) {
-    // Implementasikan layar login di sini
-    // Contoh:
-    // Navigator.pushNamed(context, '/login');
   }
 }
