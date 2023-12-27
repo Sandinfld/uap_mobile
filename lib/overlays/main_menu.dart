@@ -42,7 +42,14 @@ class MainMenu extends StatelessWidget {
                 height: 75,
                 child: ElevatedButton(
                   onPressed: () {
-                    game.overlays.remove('MainMenu');
+                    // Cek apakah pengguna sudah login atau belum
+                    if (game.isLoggedIn) {
+                      // Jika sudah login, mulai permainan
+                      game.overlays.remove('MainMenu');
+                    } else {
+                      // Jika belum login, tampilkan layar login
+                      _showLoginScreen(context);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: whiteTextColor,
@@ -67,10 +74,39 @@ Collect as many stars as you can and avoid enemies!''',
                   fontSize: 14,
                 ),
               ),
+              const SizedBox(height: 20),
+              // Tambahkan tombol login
+              SizedBox(
+                width: 200,
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Tampilkan layar login ketika tombol login ditekan
+                    _showLoginScreen(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: whiteTextColor,
+                  ),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: blackTextColor,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  // Metode untuk menampilkan layar login
+  void _showLoginScreen(BuildContext context) {
+    // Implementasikan layar login di sini
+    // Contoh:
+    // Navigator.pushNamed(context, '/login');
   }
 }
